@@ -6,6 +6,6 @@
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "env": {
-    "REACT_APP_BACKEND_URL": "https://fluxide-backend.onrender.com"
+    "REACT_APP_BACKEND_URL": "https://flux-ide-h6jk.onrender.com"
   }
 }
