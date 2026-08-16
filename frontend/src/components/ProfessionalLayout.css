@@ -1,0 +1,466 @@
+/* Professional IDE Layout - Antigravity Style (VS Code Inspired) */
+
+:root {
+    --ide-bg: #1e1e1e;
+    --ide-sidebar-bg: #252526;
+    --ide-activity-bar-bg: #333333;
+    --ide-activity-icon-fg: #999999;
+    --ide-activity-active-fg: #ffffff;
+    --ide-panel-border: #2b2b2b;
+    --ide-accent: #007acc;
+    --ide-status-bar-bg: #007acc;
+    --ide-status-bar-fg: #ffffff;
+    --ide-text-secondary: #cccccc;
+    --ide-input-bg: #3c3c3c;
+    --ide-tab-active-bg: #1e1e1e;
+    --ide-tab-inactive-bg: #2d2d2d;
+}
+
+.professional-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--ide-bg);
+    color: var(--ide-text-primary);
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Main Workspace Area (excludes Status Bar) */
+.workspace-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* --- ACTIVITY BAR (Far Left) --- */
+.activity-bar {
+    width: 48px;
+    background: var(--ide-activity-bar-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    flex-shrink: 0;
+    z-index: 20;
+}
+
+.activity-item {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--ide-activity-icon-fg);
+    position: relative;
+    transition: color 0.1s;
+}
+
+.activity-item:hover {
+    color: var(--ide-activity-active-fg);
+}
+
+.activity-item.active {
+    color: var(--ide-activity-active-fg);
+    border-left: 2px solid var(--ide-activity-active-fg);
+}
+
+.activity-item svg {
+    width: 24px;
+    height: 24px;
+}
+
+.activity-spacer {
+    flex: 1;
+}
+
+/* --- SIDE BAR (Explorer, Git, etc.) --- */
+.layout-sidebar {
+    background: var(--ide-sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--ide-panel-border);
+    position: relative;
+    contain: strict;
+}
+
+.sidebar-header {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #bbbbbb;
+    flex-shrink: 0;
+}
+
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* --- EDITOR AREA --- */
+.layout-center-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--ide-bg);
+    min-width: 0;
+}
+
+.layout-center {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- BOTTOM PANEL (Terminal) --- */
+.layout-bottom {
+    background: var(--ide-sidebar-bg);
+    border-top: 1px solid var(--ide-panel-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-tabs {
+    display: flex;
+    height: 35px;
+    align-items: center;
+    padding-left: 10px;
+    border-bottom: 1px solid var(--ide-panel-border);
+}
+
+.bottom-tab {
+    background: transparent;
+    border: none;
+    color: #999;
+    font-size: 11px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0 10px;
+    height: 100%;
+    border-bottom: 1px solid transparent;
+}
+
+.bottom-tab:hover {
+    color: #fff;
+}
+
+.bottom-tab.active {
+    color: #fff;
+    border-bottom-color: var(--ide-accent);
+}
+
+.bottom-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* --- RIGHT PANEL (Auxiliary) --- */
+.layout-sidebar.right {
+    border-right: none;
+    border-left: 1px solid var(--ide-panel-border);
+}
+
+/* --- STATUS BAR --- */
+.status-bar {
+    height: 22px;
+    background: var(--ide-status-bar-bg);
+    color: var(--ide-status-bar-fg);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 12px;
+    flex-shrink: 0;
+    justify-content: space-between;
+    z-index: 30;
+    cursor: default;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.status-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--ide-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #424242;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+/* Sidebars */
+.layout-sidebar {
+    display: flex;
+    flex-direction: column;
+    background: #0d0d0d;
+    border-right: 1px solid #1a1a1a;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    transition: width 0.2s ease;
+}
+
+.layout-sidebar.right {
+    border-right: none;
+    border-left: 1px solid #1a1a1a;
+}
+
+/* Resize Handles */
+.layout-sidebar.left::after,
+.layout-sidebar.right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: transparent;
+    cursor: col-resize;
+    transition: background 0.2s ease;
+    z-index: 10;
+}
+
+.layout-sidebar.left::after {
+    right: -2px;
+}
+
+.layout-sidebar.right::before {
+    left: -2px;
+}
+
+.layout-sidebar.left:hover::after,
+.layout-sidebar.right:hover::before {
+    background: rgba(249, 115, 22, 0.3);
+}
+
+/* Sidebar Tabs */
+.sidebar-tabs {
+    display: flex;
+    background: #0a0a0a;
+    border-bottom: 1px solid #1a1a1a;
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-tabs::-webkit-scrollbar {
+    height: 2px;
+}
+
+.sidebar-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.sidebar-tab:hover {
+    color: #999;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.sidebar-tab.active {
+    color: #f97316;
+    border-bottom-color: #f97316;
+    background: rgba(249, 115, 22, 0.05);
+}
+
+.sidebar-tab svg {
+    width: 14px;
+    height: 14px;
+}
+
+.tab-badge {
+    background: #f97316;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 4px;
+    font-weight: 700;
+}
+
+/* Sidebar Content */
+.sidebar-content {
+    flex: 1;
+    overflow: auto;
+    background: #0a0a0a;
+}
+
+/* Center Wrapper - Contains Editor + Bottom Panel */
+.layout-center-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Center Editor */
+.layout-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #1e1e1e;
+}
+
+/* Bottom Panel - Terminal, Problems, Output */
+.layout-bottom {
+    display: flex;
+    flex-direction: column;
+    background: #0d0d0d;
+    border-top: 2px solid #f97316;
+    flex-shrink: 0;
+    position: relative;
+    transition: height 0.2s ease;
+}
+
+/* Bottom resize handle */
+.layout-bottom::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: transparent;
+    cursor: row-resize;
+    transition: background 0.2s ease;
+    z-index: 10;
+}
+
+.layout-bottom:hover::before {
+    background: rgba(249, 115, 22, 0.3);
+}
+
+.bottom-tabs {
+    display: flex;
+    background: #0a0a0a;
+    border-bottom: 1px solid #1a1a1a;
+    flex-shrink: 0;
+}
+
+.bottom-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+}
+
+.bottom-tab:hover {
+    color: #999;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.bottom-tab.active {
+    color: #f97316;
+    border-bottom-color: #f97316;
+    background: rgba(249, 115, 22, 0.05);
+}
+
+.bottom-tab svg {
+    width: 14px;
+    height: 14px;
+}
+
+.bottom-content {
+    flex: 1;
+    overflow: hidden;
+    background: #0a0a0a;
+    min-height: 0;
+    position: relative;
+}
+
+/* Debug panels stack */
+.debug-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.debug-panels>* {
+    border-bottom: 1px solid #1a1a1a;
+}
+
+/* Scrollbar */
+.professional-layout ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.professional-layout ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+.professional-layout ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.professional-layout ::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+/* Smooth animations */
+.layout-sidebar,
+.layout-bottom {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Better focus states */
+.sidebar-tab:focus-visible,
+.bottom-tab:focus-visible {
+    outline: 2px solid #f97316;
+    outline-offset: -2px;
+}
